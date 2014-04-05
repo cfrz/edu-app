@@ -1,12 +1,10 @@
 from django.conf.urls import patterns, include, url
-
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'education.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
+    (r'^edu/', include('edu.urls')),
+    # tinymce is the RTF editor for model fields
+    (r'^tinymce/', include('tinymce.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
