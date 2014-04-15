@@ -22,31 +22,31 @@ def article_view(request, article_id=1):
                               {'article': Article.objects.get(id=article_id)}
                              )
                               
-def pathogen_view(request, pathogen_id=1):
+def pathogen_view(request, slug):
     return render_to_response('pathogen.html',
-                              {'pathogen': Pathogen.objects.get(tag=pathogen_id),
-                               'iso': Iso.objects.get(pathogen__tag__exact=pathogen_id),
-                               'pathtype': PathType.objects.get(pathogen__tag__exact=pathogen_id)}
+                              {'pathogen': Pathogen.objects.get(slug=slug),
+                               'iso': Iso.objects.get(pathogen__slug__exact=slug),
+                               'pathtype': PathType.objects.get(pathogen__slug__exact=slug)}
                              )
 
-def isolation_view(request, isolation_id=1):
+def isolation_view(request, slug):
     return render_to_response('isolation.html',
-                              {'isolation': Iso.objects.get(tag=isolation_id),
-                               'ppes': Prevention.objects.filter(iso__tag__exact=isolation_id)}
+                              {'isolation': Iso.objects.get(slug=slug),
+                               'ppes': Prevention.objects.filter(iso__slug__exact=slug)}
                              )
 
-def hai_view(request, hai_id=1):
+def hai_view(request, slug):
     return render_to_response('hai.html',
-                              {'hai': HAI.objects.get(tag=hai_id)}
+                              {'hai': HAI.objects.get(slug=slug)}
                              )
                               
-def pathtype_view(request, pathtype_id=1):
+def pathtype_view(request, slug):
     return render_to_response('pathtype.html',
-                              {'pathtype': PathType.objects.get(tag=pathtype_id)}
+                              {'pathtype': PathType.objects.get(slug=slug)}
                               )
 
-def ppe_view(request, ppe_id=1):
+def ppe_view(request, slug):
     return render_to_response('ppe.html',
-                              {'ppe': Prevention.objects.get(tag=ppe_id)}
+                              {'ppe': Prevention.objects.get(slug=slug)}
                               )
                               

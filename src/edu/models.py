@@ -7,6 +7,7 @@ class Prevention(models.Model):
     tag = models.CharField(max_length=25)
     body = HTMLField()
     blurb = HTMLField()
+    slug = models.SlugField(unique=True)
     
     def __unicode__(self):
         return smart_unicode(self.tag)
@@ -16,6 +17,7 @@ class Iso(models.Model):
     body = HTMLField()
     ppe = models.ManyToManyField(Prevention)
     blurb = HTMLField()
+    slug = models.SlugField(unique=True)
     
     def __unicode__(self):
         return smart_unicode(self.tag)
@@ -23,6 +25,7 @@ class Iso(models.Model):
 class PathType(models.Model):
     tag = models.CharField(max_length=15)
     body = HTMLField()
+    slug = models.SlugField(unique=True)
     
     def __unicode__(self):
         return smart_unicode(self.tag)
@@ -36,6 +39,7 @@ class Pathogen(models.Model):
     path_type = models.ForeignKey(PathType)
     body = HTMLField()
     blurb = HTMLField()
+    slug = models.SlugField(unique=True)
     
     def __unicode__(self):
         return smart_unicode(self.tag)
@@ -46,6 +50,7 @@ class Pathogen(models.Model):
 class HAI(models.Model):
     tag = models.CharField(max_length=30)
     body = HTMLField()
+    slug = models.SlugField(unique=True)
     
     def __unicode__(self):
         return smart_unicode(self.tag)
@@ -64,6 +69,7 @@ class Article(models.Model):
     iso_tags = models.ManyToManyField(Iso)
     prev_tags = models.ManyToManyField(Prevention)
     hai_tags = models.ManyToManyField(HAI)
+    slug = models.SlugField(unique=True)
     
     class Meta:
         ordering = ['-date']
